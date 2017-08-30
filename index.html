@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<section class="page-content">
+    <header class="wrapper site-header">
+        <h1>{{ site.title }}</h1>
+        <p>{{ site.description }}</p>
+    </header>
+    <div class="wrapper">
+
+        {% for p in site.books %}
+
+        <article class="book-link">
+            <p><a href="{{ site.baseurl }}{{ p.url }}">{{ p.title }}</a></p>
+        </article>
+
+        {% endfor %}
+
+    </div>
+</section>

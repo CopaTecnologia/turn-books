@@ -1,0 +1,50 @@
+---
+layout: default
+---
+
+{% assign base_folder = site.baseurl | append: '/img' | append: page.id %}
+
+<div class="book">
+
+    <p class="site-header">
+        <a href="{{ site.baseurl }}/" title="VOLTAR" class="icon">{% include left-arrow.svg %}</a>
+        <span class="site-title">{{ page.title}}</span>
+    </p>
+    
+    <div class="flipbook-viewport">
+        <div class="flipbook">
+            {% assign size_modulo = page.pages.size | modulo: 2 %}
+            {% for p in page.pages %}
+                <div><img src="{{ base_folder }}/{{ p }}"></div>
+            {% endfor %}
+            {% if size_modulo == 0 %}
+            {% else %}
+                <div></div>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+    
+<script src="{{ site.baseurl }}/js/jquery.min.1.7.js"></script>
+<script src="{{ site.baseurl }}/js/turn.min.js"></script>
+<script type="text/javascript">
+    largura = {{ page.width }};
+    altura = {{ page.height }};
+	$(".flipbook").turn({autoCenter: true});
+
+    resize = function(){
+        if( largura > ( $(window).width() * .95 ) ){
+            w = $(window).width();
+            h = ( altura * w ) / largura;
+        }
+        else{
+            w = largura;
+            h = altura;
+        }
+        $('.flipbook').turn('size', w*.7, h*.7);
+    }
+
+    window.addEventListener('load', function(){ resize(); });
+    window.addEventListener('resize', function(){ resize(); });
+</script>

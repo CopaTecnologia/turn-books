@@ -1,0 +1,36 @@
+title: Turn Books
+description: >
+  Materiais didáticos e paradidáticos, digitalizados para uso em 
+  computadores e lousa digital.
+baseurl: "/turn-books" # the subpath of your site, e.g. /blog
+url: "http://copatecnologia.com.br" # the base hostname & protocol for your site
+
+# Build settings
+exclude: 
+  - gulpfile.js
+  - README.md
+  - desktop.ini
+markdown: kramdown
+
+sass:
+  style: compressed
+
+plugins:
+  - jekyll-coffeescript
+
+collections:
+  books:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: books
+    values:
+      layout: book
+      permalink: /:name/
